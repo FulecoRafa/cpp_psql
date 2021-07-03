@@ -4,4 +4,4 @@ run: build
 	./usp_viagens
 
 build:
-	g++ src/main.cpp -o usp_viagens -lpqxx -lpq
+	g++ -g -fsanitize=address src/main.cpp -o usp_viagens -lpqxx -lpq
