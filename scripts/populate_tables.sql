@@ -125,7 +125,7 @@ insert into idioma_guia values ('Portugues', '3benmchih.titotai@azel.xyz');
 insert into idioma_guia values ('Ingles', '3benmchih.titotai@azel.xyz');
 insert into idioma_guia values ('Frances', 'vdghoughifouad4z@socialisaso.com');
 insert into idioma_guia values ('Ingles', 'vdghoughifouad4z@socialisaso.com');
-insert into idioma_guia values ('ingles', 'zsi.hazem.14@nziyce.com');
+insert into idioma_guia values ('Ingles', 'zsi.hazem.14@nziyce.com');
 insert into idioma_guia values ('Portugues', 'senta3omt@bookq.site');
 insert into idioma_guia values ('Ingles', 'senta3omt@bookq.site');
 insert into idioma_guia values ('Portugues', 'wayman.rajawi.7f@burgas.vip');
@@ -182,6 +182,7 @@ insert into reserva_restaurante (data_horario, visitante, restaurante) values ('
 
 # Viagem;
 insert into viagem values ('uchaw.rash193s@21jag.com', '2016-06-22T05:00:00', 'Paris', 'Franca', 'aviao');
+insert into viagem values ('uchaw.rash193s@21jag.com', '2016-07-22T05:00:00', 'Nova York', 'EUA', 'carro');
 insert into viagem values ('8hamodeja@ucyeh.com', '2017-05-15T10:00:00', 'Nova York', 'EUA', 'trem');
 insert into viagem values ('lnic@vicceo.com', '2018-09-23T15:30:00', 'Londres', 'Inglaterra', 'barco');
 insert into viagem values ('mwawibaghda4@test130.com', '2019-11-02T13:20:00', 'Sao Paulo', 'Brasil', 'carro');
