@@ -11,7 +11,7 @@ int main (void) {
     "Sair"
   };
   while (true) {
-    int selected = interact::opt_one(options);
+    int selected = interact::opt_one("O que gostaria de fazer?", options);
     switch (selected) {
       case 0:
         submenu::busca();

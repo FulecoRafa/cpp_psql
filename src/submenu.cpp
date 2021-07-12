@@ -19,18 +19,27 @@ namespace submenu {
       "Hoteis",
       "Menu inicial"
     };
-    int selected = interact::opt_one(options);
+    int selected = interact::opt_one("O que você gostaria de buscar?", options);
     switch (selected) {
       case 0: {
           std::string query = interact::prompt("Buscar por cidade: ");
           pqxx::result destinos = destino::search(query);
           pqxx::row d = interact::select_one(destinos);
           std::cout << destino::print(d) << '\n';
-          interact::wait();
         }
         break;
-      case 1:
-        todo();
+      case 1: {
+          std::vector<std::string> fields {
+            "nome",
+            "cidade",
+            "pais"
+          };
+          std::string f = interact::opt_one_string("Pesquisar por: ", fields);
+          std::string query = interact::prompt("Pesquisa: ");
+          pqxx::result monumentos = monumento::search(f, query);
+          pqxx::row m = interact::select_one(monumentos);
+          std::cout << monumento::print(m) << '\n';
+        }
         break;
       case 2:
         todo();
@@ -56,6 +65,7 @@ namespace submenu {
         perror("Invalid option.\n");
         exit(1);
     }
+    interact::wait();
   }
 }
 

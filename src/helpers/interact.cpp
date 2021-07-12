@@ -2,6 +2,7 @@
 #define SELECTOR
 
 #include <cstdio>
+#include <ostream>
 #include <pqxx/pqxx>
 #include <iostream>
 #include <string>
@@ -17,11 +18,12 @@ namespace interact {
     return answer;
   }
 
-  int opt_one(const std::vector<std::string>& list) {
+  int opt_one(std::string prompt, const std::vector<std::string>& list) {
     int index = 0;
     system("/bin/stty raw");
     while (true) {
       system("clear");
+      std::cout << prompt << "\r\n";
       for (int i = 0; i < list.size(); i++) {
         if (index == i)
           pinfo("> %s\r\n", list[i].c_str());
@@ -38,8 +40,8 @@ namespace interact {
     return index;
   }
 
-  std::string opt_one_string(const std::vector<std::string>& list) {
-    return list[opt_one(list)];
+  std::string opt_one_string(std::string prompt, const std::vector<std::string>& list) {
+    return list[opt_one(prompt, list)];
   }
 
   pqxx::row select_one(const pqxx::result& list) {
@@ -58,7 +60,7 @@ namespace interact {
       }
       char option = getchar();
       if (option == 'w') index = (index + 1) % list.size();
-      else if (option == 's') index = (index - 1) % (int)list.size();
+      else if (option == 's') index = (index - 1) % list.size();
       else if (option == ' ') break;
     }
     printf("\r");
@@ -67,8 +69,8 @@ namespace interact {
   }
 
   void wait() {
-    while(std::cin.get() != '\n');
-    std::cout << "Press ENTER to continue ";
+    std::fflush(stdin);
+    std::cout << "\nPress ENTER to continue ";
     while(std::cin.get() != '\n');
   }
 }

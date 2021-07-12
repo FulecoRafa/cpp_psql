@@ -1,5 +1,6 @@
 # Destinos;
 insert into destino values('Paris', 'Franca');
+insert into destino values('Parispiranga', 'Brasil');
 insert into destino values('Nova York', 'EUA');
 insert into destino values('Londres', 'Inglaterra');
 insert into destino values('Wiltshire', 'Inglaterra');
