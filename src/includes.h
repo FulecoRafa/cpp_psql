@@ -8,7 +8,8 @@
 #include "helpers/print.cpp"
 #include "helpers/interact.cpp"
 
-#include "database/connection.cpp"
-#include "database/destino.cpp"
+#include "database/database.h"
+
+#include "submenu.cpp"
 
 #endif

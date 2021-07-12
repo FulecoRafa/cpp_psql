@@ -1,15 +1,36 @@
+#include "helpers/interact.cpp"
 #include "includes.h"
+#include <cstdio>
 
 int main (void) {
-  std::string query = interact::prompt("Procurar destino: ");
-  pqxx::result destinos = destino::search(query);
-  if (destinos.size() <= 0) {
-    perror("Sem resultados para busca...\n");
-    return 0;
+  std::vector<std::string> options{
+    "Buscar",
+    "Minhas reservas",
+    "Fazer nova reserva",
+    "Fazer nova viagem",
+    "Sair"
+  };
+  while (true) {
+    int selected = interact::opt_one(options);
+    switch (selected) {
+      case 0:
+        submenu::busca();
+        break;
+      case 1:
+        todo()
+        break;
+      case 2:
+        todo()
+        break;
+      case 3:
+        todo()
+        break;
+      case 4:
+        return 0;
+      default:
+        perror("Option is not valid.\n");
+        exit(1);
+    }
   }
-  pqxx::row selected = interact::select_one(destinos);
-  // std::string field = interact::prompt("Campo a mudar: ");
-  // std::string value = interact::prompt("Novo valor: ");
-  destino::del(selected);
   return 0;
 }
