@@ -17,7 +17,7 @@ namespace submenu {
   }
 
   void busca() {
-    std::vector<std::string> options {
+    std::vector<std::string> options {    // recebe uma string com a opcao de busca a ser feita
       "Destinos",
       "Monumentos",
       "Museus",
@@ -28,7 +28,7 @@ namespace submenu {
       "Hoteis",
       "Menu inicial"
     };
-    int selected = interact::opt_one("O que você gostaria de buscar?", options);
+    int selected = interact::opt_one("O que você gostaria de buscar?", options);  // recebe o retorno de interact.cpp com a opcao de execucao a ser realizada
     switch (selected) {
       case 0: {
           std::string query = interact::prompt("Buscar por cidade: ");

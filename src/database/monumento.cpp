@@ -6,6 +6,8 @@
 #include "connection.cpp"
 #include "destino.cpp"
 
+
+//exibe as informacoes de um monumento buscado pelo usuario
 namespace monumento {
   pqxx::result search(std::string& field, std::string& query) {
     return conn::work.exec("select * from monumento where lower(" + field + ") like lower('" + query + "%')");

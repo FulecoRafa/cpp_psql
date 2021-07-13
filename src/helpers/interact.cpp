@@ -18,7 +18,7 @@ namespace interact {
     return answer;
   }
 
-  int opt_one(std::string prompt, const std::vector<std::string>& list) {
+  int opt_one(std::string prompt, const std::vector<std::string>& list) {   
     int index = 0;
     system("/bin/stty raw");
     while (true) {
@@ -68,7 +68,7 @@ namespace interact {
     return list[index];
   }
 
-  void wait(bool is_space) {
+  void wait(bool is_space) {    // retorna o programa quando o usuario pressiona ENTER
     std::cin.clear();
     if (is_space) {
       std::fflush(stdin);

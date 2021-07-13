@@ -5,6 +5,8 @@
 #include <pqxx/pqxx>
 #include "connection.cpp"
 
+
+// usuario pode buscar por um museu e este campo retornara as informacoes relevantes sobre o museu buscado
 namespace museu {
   pqxx::result search(std::string& field, std::string& query) {
     return conn::work.exec("select * from museu where lower(" + field + ") like lower('" + query + "%')");
