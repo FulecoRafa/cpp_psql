@@ -5,5 +5,6 @@
 #include "destino.cpp"
 #include "monumento.cpp"
 #include "museu.cpp"
+#include "exposicao.cpp"
 
 #endif // DATABASE_H

@@ -7,9 +7,8 @@
 
 #include "helpers/print.cpp"
 #include "helpers/interact.cpp"
+#include "helpers/check.cpp"
 
 #include "database/database.h"
-
-#include "submenu.cpp"
 
 #endif
