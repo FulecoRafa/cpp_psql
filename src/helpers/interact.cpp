@@ -68,8 +68,13 @@ namespace interact {
     return list[index];
   }
 
-  void wait() {
-    std::fflush(stdin);
+  void wait(bool is_space) {
+    std::cin.clear();
+    if (is_space) {
+      std::fflush(stdin);
+    } else {
+      while(std::cin.get() != '\n');
+    }
     std::cout << "\nPress ENTER to continue ";
     while(std::cin.get() != '\n');
   }

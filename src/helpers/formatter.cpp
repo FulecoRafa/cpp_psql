@@ -9,8 +9,13 @@ namespace format {
   std::string row_to_string(pqxx::row row) {
     std::stringstream ss;
     ss << row[0].c_str();
-    for (int i = 1; i < row.size(); i++)
+    for (int i = 1; i < row.size(); i++) {
+      if (ss.str().size() > 60) {
+        ss << "...";
+        break;
+      }
       ss << ", " << row[i].c_str();
+    }
     return ss.str();
   }
 }
