@@ -25,7 +25,7 @@ namespace submenu {
       "Hoteis",
       "Menu inicial"
     };
-    int selected = interact::opt_one("O que você gostaria de buscar?", options);  // recebe o retorno de interact.cpp com a opcao de execucao a ser realizada
+    int selected = interact::opt_one("O que você gostaria de buscar?", options);  // recebe a opcao de execucao a ser realizada como selecionado por interact.cpp
     switch (selected) {
 
       case 0: { // destinos

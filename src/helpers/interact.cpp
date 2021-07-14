@@ -18,7 +18,7 @@ namespace interact {
     return answer;
   }
 
-  int opt_one(std::string prompt, const std::vector<std::string>& list) {   
+  int opt_one(std::string prompt, const std::vector<std::string>& list) {   // cria um menu interativo com opcoes para o usuario selecionar 
     int index = 0;
     system("/bin/stty raw");
     while (true) {
@@ -31,7 +31,7 @@ namespace interact {
           printf("  %s\r\n", list[i].c_str());
       }
       char option = getchar();
-      if (option == 'w') index = (index - 1 < 0 ? list.size() : index) - 1;
+      if (option == 'w') index = (index - 1 < 0 ? list.size() : index) - 1;   // navegacao do menu com W e S
       else if (option == 's') index = (index + 1) % list.size();
       else if (option == ' ') break;
     }
@@ -40,7 +40,7 @@ namespace interact {
     return index;
   }
 
-  std::string opt_one_string(std::string prompt, const std::vector<std::string>& list) {
+  std::string opt_one_string(std::string prompt, const std::vector<std::string>& list) { 
     return list[opt_one(prompt, list)];
   }
 
@@ -60,7 +60,7 @@ namespace interact {
           printf("  %s\r\n", format::row_to_string(list[i]).c_str());
       }
       char option = getchar();
-      if (option == 'w') index = (index - 1 < 0 ? s : index) - 1;
+      if (option == 'w') index = (index - 1 < 0 ? s : index) - 1;     // mais navegacao de menus
       else if (option == 's') index = (index + 1) % s;
       else if (option == ' ') break;
     }
@@ -69,7 +69,7 @@ namespace interact {
     return list[index];
   }
 
-  void wait(bool is_space) {    // retorna o programa quando o usuario pressiona ENTER
+  void wait(bool is_space) {    // nao roda ate receber um caracter branco
     std::cin.clear();
     if (is_space) {
       std::fflush(stdin);
