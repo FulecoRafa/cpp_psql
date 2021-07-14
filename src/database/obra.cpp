@@ -20,7 +20,7 @@ namespace obra {
       "\nPode ser visto na exposição '" + obj["exposicao"].c_str() +
       "' no " + obj["m_nome"].c_str() +
       "\nCriado por " + obj["artista"].c_str() +
-      " em " + print::print_date(obj["data_de_criacao"].c_str()) +
+      " em " + print::date(obj["data_de_criacao"].c_str()) +
       (obj["origem"].is_null()
        ? ""
        : std::string() +

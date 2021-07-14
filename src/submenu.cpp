@@ -136,9 +136,28 @@ namespace submenu {
         break;
 
       case 5: { // restaurante
-
+        std::vector<std::string> fields {
+          "nome",
+          "museu",
+          "culinaria"
+        };
+        std::string f = interact::opt_one_string("Pesquisar por: ", fields);
+        std::string query = interact::prompt("Pesquisa: ");
+        pqxx::result restaurantes;
+        if (f == "culinaria") {
+          restaurantes = restaurante::search_by_culinaria(query);
+        } else {
+          restaurantes = restaurante::search(f, query);
+        }
+        if (!check_resul(restaurantes)) {
+          perror("Nenhum resultado encontrado para a busca");
+          interact::wait(false);
+          return;
+        }
+        pqxx::row r = interact::select_one(restaurantes);
+        std::cout << '\n' << restaurante::print(r) << '\n';
+        interact::wait(multi_result(restaurantes));
       }
-        todo();
         break;
 
       case 6: { // hoteis
