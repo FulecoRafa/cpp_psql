@@ -21,8 +21,6 @@ namespace submenu {
       "Museus",
       "Exposições",
       "Obras",
-      "Artistas",
-      "Movimentos artísticos",
       "Restaurantes",
       "Hoteis",
       "Menu inicial"
@@ -30,7 +28,7 @@ namespace submenu {
     int selected = interact::opt_one("O que você gostaria de buscar?", options);
     switch (selected) {
 
-      case 0: {
+      case 0: { // destinos
         std::string query = interact::prompt("Buscar por cidade: ");
         pqxx::result destinos = destino::search(query);
         if (!check_resul(destinos)) {
@@ -44,7 +42,7 @@ namespace submenu {
       }
         break;
 
-      case 1: {
+      case 1: { // monumentos
         std::vector<std::string> fields {
           "nome",
           "cidade",
@@ -64,7 +62,7 @@ namespace submenu {
       }
         break;
         
-      case 2: {
+      case 2: { // museus
         std::vector<std::string> fields {
           "cadastro_nacional",
           "nome",
@@ -84,7 +82,7 @@ namespace submenu {
         interact::wait(multi_result(museus));
       }
         break;
-      case 3: {
+      case 3: { // exposicoes
         std::vector<std::string> fields {
           "museu",
           "nome",
@@ -115,22 +113,40 @@ namespace submenu {
         interact::wait(multi_result(exposicoes));
       }
         break;
-      case 4:
+
+      case 4: { // obras
+        std::vector<std::string> fields {
+          "nome",
+          "museu",
+          "artista",
+          "movimento artístico/origem"
+        };
+        std::string f = interact::opt_one_string("Pesquisar por: ", fields);
+        std::string query = interact::prompt("Pesquisa: ");
+        pqxx::result obras = obra::search(f, query);
+        if (!check_resul(obras)) {
+          perror("Nenhum resultado encontrado para a busca");
+          interact::wait(false);
+          return;
+        }
+        pqxx::row o = interact::select_one(obras);
+        std::cout << '\n' << obra::print(o) << '\n';
+        interact::wait(multi_result(obras));
+      }
+        break;
+
+      case 5: { // restaurante
+
+      }
         todo();
         break;
-      case 5:
-        todo();
-        break;
-      case 6:
+
+      case 6: { // hoteis
+
+      }
         todo();
         break;
       case 7:
-        todo();
-        break;
-      case 8:
-        todo();
-        break;
-      case 9:
         return;
       default:
         perror("Invalid option.\n");
