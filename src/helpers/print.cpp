@@ -29,12 +29,22 @@ namespace print{
     return month_num_to_word(std::stoi(num));
   }
 
-  std::string print_date(std::string date) {
+  std::string date(std::string date) {
     std::string day = date.substr(8, 2);
     std::string month = month_num_to_word(date.substr(5, 2));
     std::string year = date.substr(0, 4);
     return std::string() +
       day + " de " + month + " de " + year;
+  }
+
+  std::string time(std::string time) {
+    std::string hm = time.substr(0, 5);
+    int i_hm = std::stoi(hm);
+    if (i_hm > 12) {
+      return std::to_string(i_hm - 12) + hm.substr(2, 3) + " PM";
+    } else {
+      return hm + " AM";
+    }
   }
 }
 

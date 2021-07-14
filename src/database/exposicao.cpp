@@ -27,10 +27,10 @@ namespace exposicao {
   std::string print(pqxx::row& obj) {
     std::string ret = std::string() + "# Exposição '" + obj["nome"].c_str() +
       "'\nAberta no museu '" + obj["museu"].c_str() +
-      "'\nComeça/começou   em " + print::print_date(obj["data_de_inicio"].c_str()) +
+      "'\nComeça/começou   em " + print::date(obj["data_de_inicio"].c_str()) +
       (obj["data_de_termino"].is_null()
        ? "\nNão tem data de término prevista"
-       : "\nTermina/terminou em " + print::print_date(obj["data_de_termino"].c_str())) +
+       : "\nTermina/terminou em " + print::date(obj["data_de_termino"].c_str())) +
       "\nDescrição: " + obj["descricao"].c_str();
     return ret;
   }
