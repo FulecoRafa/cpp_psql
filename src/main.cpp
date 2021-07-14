@@ -1,5 +1,6 @@
 #include "helpers/interact.cpp"
 #include "includes.h"
+#include "submenu.cpp"
 #include <cstdio>
 
 int main (void) {

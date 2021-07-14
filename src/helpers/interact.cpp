@@ -48,19 +48,20 @@ namespace interact {
     if (list.size() == 1) {
       return list[0];
     }
+    int s = list.size();
     int index = 0;
     system("/bin/stty raw");
     while (true) {
       system("clear");
-      for (int i = 0; i < list.size(); i++) {
+      for (int i = 0; i < s; i++) {
         if (index == i)
           pinfo("> %s\r\n", format::row_to_string(list[i]).c_str());
         else
           printf("  %s\r\n", format::row_to_string(list[i]).c_str());
       }
       char option = getchar();
-      if (option == 'w') index = (index + 1) % list.size();
-      else if (option == 's') index = (index - 1) % list.size();
+      if (option == 'w') index = (index - 1 < 0 ? s : index) - 1;
+      else if (option == 's') index = (index + 1) % s;
       else if (option == ' ') break;
     }
     printf("\r");
