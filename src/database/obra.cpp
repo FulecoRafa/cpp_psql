@@ -6,7 +6,7 @@
 #include "connection.cpp"
 #include "../helpers/print.cpp"
 
-namespace obra {
+namespace obra {    // Exibe as informacoes pertencentes a uma obra especifica, alem de onde ela pode ser encontrada e a qual periodo pertence
   pqxx::result search(std::string& field, std::string& query) {
     return conn::work.exec("select * from (select o.*, m.nome as m_nome from obra o"
         " join museu m on o.museu = m.cadastro_nacional) ext_obra"

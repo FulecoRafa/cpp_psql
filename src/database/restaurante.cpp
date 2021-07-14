@@ -6,6 +6,8 @@
 #include "connection.cpp"
 #include "../helpers/print.cpp"
 
+// Usuario pode buscar por um restaurante e ver as informacoes relevantes a ele ou buscar por culinarias e verificar quais restaurantes o atendem
+
 namespace restaurante {
   pqxx::result search(std::string& field, std::string& query) {
     return conn::work.exec("select * from (select"

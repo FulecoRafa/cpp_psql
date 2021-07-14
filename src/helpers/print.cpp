@@ -8,7 +8,7 @@
 #define todo() perror("Not yet implemented"); exit(1);
 
 namespace print{
-  std::string month_num_to_word(int num) {
+  std::string month_num_to_word(int num) {		// codigo para formatacao de datas de forma mais amigavel ao usuario
     std::string months[] = {
       "Janeiro",
       "Fevereiro",
