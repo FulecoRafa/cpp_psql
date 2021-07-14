@@ -14,7 +14,7 @@ namespace interact {
   std::string prompt(std::string msg) {
     std::string answer;
     std::cout << msg;
-    std::cin >> answer;
+    std::getline(std::cin, answer, '\n');
     return answer;
   }
 
@@ -69,13 +69,8 @@ namespace interact {
     return list[index];
   }
 
-  void wait(bool is_space) {
-    std::cin.clear();
-    if (is_space) {
-      std::fflush(stdin);
-    } else {
-      while(std::cin.get() != '\n');
-    }
+  void wait() {
+    std::fflush(stdin);
     std::cout << "\nPress ENTER to continue ";
     while(std::cin.get() != '\n');
   }

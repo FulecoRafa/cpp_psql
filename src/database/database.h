@@ -8,5 +8,6 @@
 #include "exposicao.cpp"
 #include "obra.cpp"
 #include "restaurante.cpp"
+#include "hotel.cpp"
 
 #endif // DATABASE_H
