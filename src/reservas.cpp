@@ -11,7 +11,7 @@ namespace reservas {
   std::string visitante("");
   bool login() {
     std::string email = interact::prompt("Email: ");
-    std::string senha = interact::password("Senha: ");
+    std::string senha = interact::password("Senha: ");    // Login de usuario
     if (visitante::login(email, senha)) {
       visitante = email;
       return true;
@@ -22,7 +22,7 @@ namespace reservas {
 
   void get_reservas() {
     if (!login()) return;
-    std::vector<std::string> options {
+    std::vector<std::string> options {    // Define qual a reserva que o usuario deseja fazer
       "hotel",
       "restaurante",
       "viagem",

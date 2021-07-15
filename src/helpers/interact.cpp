@@ -11,7 +11,7 @@
 #include "formatter.cpp"
 
 namespace interact {
-  std::string prompt(std::string msg) {
+  std::string prompt(std::string msg) {     // solicita o login e senha do usuario
     std::string answer;
     std::cout << msg;
     std::getline(std::cin, answer, '\n');
@@ -78,13 +78,9 @@ namespace interact {
     return list[index];
   }
 
-<<<<<<< HEAD
-
-=======
   void wait() {
     std::fflush(stdin);
->>>>>>> master
-    std::cout << "\nPress ENTER to continue ";
+    std::cout << "\nPress ENTER to continue ";    // continua o programa
     while(std::cin.get() != '\n');
   }
 }

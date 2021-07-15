@@ -28,7 +28,7 @@ namespace submenu {
     int selected = interact::opt_one("O que você gostaria de buscar?", options);  // recebe a opcao de execucao a ser realizada como selecionado por interact.cpp
     switch (selected) {
 
-      case 0: { // destinos
+      case 0: { // buscar por destinos
         std::string query = interact::prompt("Buscar por cidade: ");
         pqxx::result destinos = destino::search(query);
         if (!check_resul(destinos)) {
@@ -40,7 +40,7 @@ namespace submenu {
       }
         break;
 
-      case 1: { // monumentos
+      case 1: { // buscar por monumentos
         std::vector<std::string> fields {
           "nome",
           "cidade",
@@ -58,7 +58,7 @@ namespace submenu {
       }
         break;
         
-      case 2: { // museus
+      case 2: { // buscar por museus
         std::vector<std::string> fields {
           "cadastro_nacional",
           "nome",
@@ -77,7 +77,7 @@ namespace submenu {
       }
         break;
 
-      case 3: { // exposicoes
+      case 3: { // buscar por exposicoes
         std::vector<std::string> fields {
           "museu",
           "nome",
@@ -106,7 +106,7 @@ namespace submenu {
       }
         break;
 
-      case 4: { // obras
+      case 4: { // buscar por obras
         std::vector<std::string> fields {
           "nome",
           "museu",
@@ -125,7 +125,7 @@ namespace submenu {
       }
         break;
 
-      case 5: { // restaurante
+      case 5: { // buscar por restaurantes
         std::vector<std::string> fields {
           "nome",
           "museu",
@@ -148,7 +148,7 @@ namespace submenu {
       }
         break;
 
-      case 6: { // hoteis
+      case 6: { // buscar por hoteis
         std::vector<std::string> fields {
           "cadastro_nacional",
           "nome",
