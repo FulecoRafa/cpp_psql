@@ -29,6 +29,13 @@ namespace restaurante {
         );
   }
 
+  pqxx::result get_reservas(std::string visitante) {
+    return conn::work.exec("select * from reserva_restaurante rr"
+        " join restaurante r on r.cadastro_nacional = rr.restaurante"
+        " where visitante = '" + visitante + "'"
+        );
+  }
+
   std::string print(pqxx::row& obj) {
     std::vector<std::string> culinarias;
       if (!obj["culinaria1"].is_null())culinarias.push_back(obj["culinaria1"].c_str());
@@ -46,6 +53,15 @@ namespace restaurante {
         }
       }
     return res;
+  }
+
+  std::string print_reserva(pqxx::row& obj) {
+    return std::string() +
+      "Você possui uma reserva"
+      "\n no dia " + print::date(obj["data_horario"].c_str()) +
+      " às " + print::time(std::string(obj["data_horario"].c_str()).substr(11)) +
+      "\nNo resturante:\n" +
+      print(obj);
   }
 }
 

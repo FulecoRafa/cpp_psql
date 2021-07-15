@@ -14,7 +14,16 @@ namespace interact {
   std::string prompt(std::string msg) {
     std::string answer;
     std::cout << msg;
-    std::cin >> answer;
+    std::getline(std::cin, answer, '\n');
+    return answer;
+  }
+
+  std::string password(std::string msg) {
+    std::string answer;
+    std::cout << msg << "\033[30;40;5m";
+    std::getline(std::cin, answer, '\n');
+    std::cout << "\033[0m\n";
+    system("clear");
     return answer;
   }
 
@@ -69,13 +78,12 @@ namespace interact {
     return list[index];
   }
 
-  void wait(bool is_space) {    // nao roda ate receber um caracter branco
-    std::cin.clear();
-    if (is_space) {
-      std::fflush(stdin);
-    } else {
-      while(std::cin.get() != '\n');
-    }
+<<<<<<< HEAD
+
+=======
+  void wait() {
+    std::fflush(stdin);
+>>>>>>> master
     std::cout << "\nPress ENTER to continue ";
     while(std::cin.get() != '\n');
   }
