@@ -18,6 +18,15 @@ namespace interact {
     return answer;
   }
 
+  std::string password(std::string msg) {
+    std::string answer;
+    std::cout << msg << "\033[30;40;5m";
+    std::getline(std::cin, answer, '\n');
+    std::cout << "\033[0m\n";
+    system("clear");
+    return answer;
+  }
+
   int opt_one(std::string prompt, const std::vector<std::string>& list) {
     int index = 0;
     system("/bin/stty raw");

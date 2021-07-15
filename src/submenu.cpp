@@ -33,12 +33,10 @@ namespace submenu {
         pqxx::result destinos = destino::search(query);
         if (!check_resul(destinos)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row d = interact::select_one(destinos);
         std::cout << '\n' << destino::print(d) << '\n';
-        interact::wait();
       }
         break;
 
@@ -53,12 +51,10 @@ namespace submenu {
         pqxx::result monumentos = monumento::search(f, query);
         if (!check_resul(monumentos)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row m = interact::select_one(monumentos);
         std::cout << '\n' << monumento::print(m) << '\n';
-        interact::wait();
       }
         break;
         
@@ -74,12 +70,10 @@ namespace submenu {
         pqxx::result museus = museu::search(f, query);
         if (!check_resul(museus)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row m = interact::select_one(museus);
         std::cout << '\n' << museu::print(m) << '\n';
-        interact::wait();
       }
         break;
 
@@ -96,7 +90,6 @@ namespace submenu {
           std::string finish = interact::prompt("Data de máxima da exposição. Utilize o formato (AAAA-MM-DD): ");
           if (!(check::is_date(start) && check::is_date(finish))) {
             perror("Data em formato inválido...");
-            interact::wait();
             return;
           }
           exposicoes = exposicao::search_by_date(start, finish);
@@ -106,12 +99,10 @@ namespace submenu {
         }
         if (!check_resul(exposicoes)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row e = interact::select_one(exposicoes);
         std::cout << '\n' << exposicao::print(e) << '\n';
-        interact::wait();
       }
         break;
 
@@ -127,12 +118,10 @@ namespace submenu {
         pqxx::result obras = obra::search(f, query);
         if (!check_resul(obras)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row o = interact::select_one(obras);
         std::cout << '\n' << obra::print(o) << '\n';
-        interact::wait();
       }
         break;
 
@@ -152,12 +141,10 @@ namespace submenu {
         }
         if (!check_resul(restaurantes)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row r = interact::select_one(restaurantes);
         std::cout << '\n' << restaurante::print(r) << '\n';
-        interact::wait();
       }
         break;
 
@@ -173,12 +160,10 @@ namespace submenu {
         pqxx::result hoteis = hotel::search(f, query);
         if (!check_resul(hoteis)) {
           perror("Nenhum resultado encontrado para a busca");
-          interact::wait();
           return;
         }
         pqxx::row m = interact::select_one(hoteis);
         std::cout << '\n' << hotel::print(m) << '\n';
-        interact::wait();
       }
         break;
       case 7:
@@ -187,6 +172,7 @@ namespace submenu {
         perror("Invalid option.\n");
         exit(1);
     }
+    interact::wait();
   }
 }
 

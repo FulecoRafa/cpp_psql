@@ -1,6 +1,6 @@
 #include "helpers/interact.cpp"
-#include "includes.h"
 #include "submenu.cpp"
+#include "reservas.cpp"
 #include <cstdio>
 
 int main (void) {
@@ -18,7 +18,7 @@ int main (void) {
         submenu::busca();
         break;
       case 1:
-        todo()
+        reservas::get_reservas();
         break;
       case 2:
         todo()
