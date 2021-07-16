@@ -14,12 +14,13 @@ namespace hotel {
 
   pqxx::result get_reservas(std::string &visitante) {
     return conn::work.exec("select * from reserva_quarto rq"
-        " join quarto q on q.numero = rq.quarto and q.hotel = rq.hotel"
+        " join quarto q on q.numero = rq.quarto and q.hotel = rq.hotel"   // retorna as reservas feitas em determinado hotel
         " join hotel h on q.hotel = h.cadastro_nacional"
         " where visitante = '" + visitante + "'"
         );
   }
 
+  // retorna as informacoes a respeito do hotel, quarto, e reserva feita
   std::string print(pqxx::row& obj) {
     return std::string() + "# " + obj["nome"].c_str() +
       "\nCadastro Nacional: " + obj["cadastro_nacional"].c_str() +
