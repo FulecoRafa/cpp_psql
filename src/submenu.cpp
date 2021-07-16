@@ -9,7 +9,7 @@ namespace submenu {
   void busca() {
 
     while (true) {
-      std::vector<std::string> options {
+      std::vector<std::string> options {  // seletor de opcoes para o usuario 
         "Destinos",
         "Monumentos",
         "Museus",
@@ -22,7 +22,7 @@ namespace submenu {
       int selected = interact::opt_one("O que você gostaria de buscar?", options);
       switch (selected) {
 
-        case 0: { // destinos
+        case 0: { // destinos de viagem
           std::string query = interact::prompt("Buscar por cidade: ");
           pqxx::result destinos = destino::search(query);
           if (!check::check_resul(destinos)) {
@@ -31,7 +31,7 @@ namespace submenu {
           }
           pqxx::row d = interact::select_one(destinos);
           std::cout << '\n' << destino::print(d) << '\n';
->>>>>>> master
+
         }
           break;
 
@@ -51,7 +51,7 @@ namespace submenu {
           }
           pqxx::row m = interact::select_one(monumentos);
           std::cout << '\n' << monumento::print(m) << '\n';
->>>>>>> master
+
         }
           break;
 
@@ -63,7 +63,7 @@ namespace submenu {
             "pais"
           };
           std::string f = interact::opt_one_string("Pesquisar por: ", fields);
->>>>>>> master
+
           std::string query = interact::prompt("Pesquisa: ");
           pqxx::result museus = museu::search(f, query);
           if (!check::check_resul(museus)) {
@@ -101,7 +101,7 @@ namespace submenu {
           }
           pqxx::row e = interact::select_one(exposicoes);
           std::cout << '\n' << exposicao::print(e) << '\n';
->>>>>>> master
+
         }
           break;
 
@@ -121,12 +121,12 @@ namespace submenu {
           }
           pqxx::row o = interact::select_one(obras);
           std::cout << '\n' << obra::print(o) << '\n';
->>>>>>> master
+
         }
           break;
 
         case 5: { // restaurante
-          std::vector<std::string> fields {
+          std::vector<std::string> fields {   // opcoes de busca para restaurantes
             "nome",
             "museu",
             "culinaria"
@@ -150,7 +150,7 @@ namespace submenu {
           break;
 
         case 6: { // hoteis
-          std::vector<std::string> fields {
+          std::vector<std::string> fields {   
             "cadastro_nacional",
             "nome",
             "cidade",
@@ -165,7 +165,7 @@ namespace submenu {
           }
           pqxx::row m = interact::select_one(hoteis);
           std::cout << '\n' << hotel::print(m) << '\n';
->>>>>>> master
+
         }
           break;
 

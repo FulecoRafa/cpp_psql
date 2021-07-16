@@ -29,6 +29,7 @@ namespace restaurante {
         );
   }
 
+  // retorna as reservas feitas em um determinado restaurante 
   pqxx::result get_reservas(std::string visitante) {
     return conn::work.exec("select rr.*, r.*, m.nome as m_nome from reserva_restaurante rr"
         " join restaurante r on r.cadastro_nacional = rr.restaurante"
@@ -37,6 +38,7 @@ namespace restaurante {
         );
   }
 
+  // mostra em qua restaurante é possivel encontrar qual estilo de culinaria e seus horarios de funcionamento
   std::string print(pqxx::row& obj) {
     std::vector<std::string> culinarias;
       if (!obj["culinaria1"].is_null())culinarias.push_back(obj["culinaria1"].c_str());
@@ -56,6 +58,7 @@ namespace restaurante {
     return res;
   }
 
+  // retorna a reserva feita pelo usuario para confirmacao 
   std::string print_reserva(pqxx::row& obj) {
     return std::string() +
       "Você possui uma reserva"

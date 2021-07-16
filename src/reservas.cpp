@@ -36,6 +36,8 @@ namespace reservas {
         "viagem",
         "menu inicial"
       };
+
+      // rotina para efetuar reservas em diferentes locais
       int tipo = interact::opt_one("Você quer ver que tipo de reserva?", options);
       switch (tipo) {
 
@@ -65,7 +67,7 @@ namespace reservas {
                 exit(1);
       }
       interact::wait();
->>>>>>> master
+
     }
   }
 }
