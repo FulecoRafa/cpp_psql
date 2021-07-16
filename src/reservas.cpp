@@ -38,8 +38,15 @@ namespace reservas {
       int tipo = interact::opt_one("Você quer ver que tipo de reserva?", options);
       switch (tipo) {
 
-        case 0:
-          todo();
+        case 0: { // hotel
+          pqxx::result r_quarto = hotel::get_reservas(visitante);
+          if (!check::check_resul(r_quarto)) {
+            perror("Você não possui nenhuma reserva em hotéis.");
+            break;
+          }
+          pqxx::row rr = interact::select_one(r_quarto);
+          std::cout << '\n' << hotel::print_reserva(rr) << '\n';
+        }
           break;
 
         case 1: { // restaurante
