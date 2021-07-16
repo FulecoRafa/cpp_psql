@@ -10,7 +10,7 @@ namespace check {
   }
 
   bool is_date (std::string s) {
-    if (s.length() <= 10) return false;
+    if (s.length() != 10) return false;
       for (int i = 0; i < 10; i++) {
         if (i == 4 || i == 7) {
           if (s[i] != '-') {
@@ -22,6 +22,17 @@ namespace check {
           }
         }
       }
+    return true;
+  }
+
+  bool is_time(std::string s) {
+    if (s.length() != 5 
+        || !is_number(s[0])
+        || !is_number(s[1])
+        || !is_number(s[3])
+        || !is_number(s[4])
+        || s[2] != ':'
+        ) return false;
     return true;
   }
 

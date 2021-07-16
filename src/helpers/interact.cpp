@@ -18,6 +18,15 @@ namespace interact {
     return answer;
   }
 
+  bool confirm(std::string msg) {
+    std::cout << msg << " [yN]: ";
+    system("/bin/stty raw");
+    char answer = std::cin.get();
+    system("/bin/stty cooked");
+    std::cout << '\n';
+    return answer == 'y' || answer == 'Y' || answer == '\n';
+  }
+
   std::string password(std::string msg) {
     std::string answer;
     std::cout << msg << "\033[30;40;5m";
