@@ -5,12 +5,6 @@ select * from visita_guiada vg
   and (select count(*) from grupo_visita where visita_guiada = vg.id) < 20;
 # }}};
 
-# Consultar faturamento do hotel entre duas datas {{{;
-select sum(rq.preco_total) from reserva_quarto rq
-  join quarto q on q.numero = rq.quarto and q.hotel = rq.hotel
-  where rq.data_de_inicio >= '2016-01-01' and rq.data_de_inicio < '2018-01-01';
-# }}};
-
 # Consultar obras de cada país de cada categoria, agrupando por museu {{{;
 select count(o.nome), o.categoria, o.exposicao, m.nome, m.pais
   from obra o

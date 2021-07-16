@@ -35,6 +35,15 @@ namespace restaurante {
         );
   }
 
+  pqxx::result add_reserva(std::string visitante, std::string date,
+                           std::string time, pqxx::row restaurante) {
+    return conn::work.exec("insert into reserva_restaurante values("
+        "'" + visitante + "', "
+        "'" + date + "T" + time + ":00', "
+        "'" +  restaurante["cadastro_nacional"].as<std::string>() +
+        "')");
+  }
+
   std::string print(pqxx::row& obj) {
     std::vector<std::string> culinarias;
       if (!obj["culinaria1"].is_null())culinarias.push_back(obj["culinaria1"].c_str());
