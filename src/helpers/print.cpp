@@ -46,6 +46,11 @@ namespace print{
       return hm + " AM";
     }
   }
+
+  float moneytof(std::string m) {
+    m.erase(0,1);
+    return std::stof(m);
+  }
 }
 
 #endif // PRINT
