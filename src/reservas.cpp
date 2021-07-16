@@ -60,9 +60,16 @@ namespace reservas {
         }
           break;
 
-        case 2:
-                todo();
-                break;
+        case 2: { // viagem
+          pqxx::result viagens = destino::get_viagens(visitante);
+          if (!check::check_resul(viagens)) {
+            perror("Você não possui nenhuma reserva em restaurante.");
+            break;
+          }
+          pqxx::row rr = interact::select_one(viagens);
+          std::cout << '\n' << destino::print_viagem(rr) << '\n';
+        }
+          break;
 
         case 3:
                 return;
