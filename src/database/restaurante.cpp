@@ -11,7 +11,7 @@ namespace restaurante {
     return conn::work.exec("select * from (select"
         " r.cadastro_nacional, r.nome, r.horario_abertura,"
         " r.horario_fechamento, r.culinaria1,"
-        " r.culinaria2, r.culinaria3, m.nome as museu"
+        " r.culinaria2, r.culinaria3, m.nome as m_nome"
         " from restaurante r"
         " join museu m on r.museu = m.cadastro_nacional) ext_rest"
         " where lower(" + field + ") like lower('" + query + "%')");
@@ -28,8 +28,9 @@ namespace restaurante {
   }
 
   pqxx::result get_reservas(std::string visitante) {
-    return conn::work.exec("select * from reserva_restaurante rr"
+    return conn::work.exec("select rr.*, r.*, m.nome as m_nome from reserva_restaurante rr"
         " join restaurante r on r.cadastro_nacional = rr.restaurante"
+        " join museu m on r.museu = m.cadastro_nacional"
         " where visitante = '" + visitante + "'"
         );
   }
@@ -41,8 +42,8 @@ namespace restaurante {
       if (!obj["culinaria3"].is_null())culinarias.push_back(obj["culinaria3"].c_str());
     std::string res =  std::string() +
       "# " + obj["nome"].c_str() +
-      "\nEncontra-se no '" + obj["museu"].c_str() +
-      "\nHorário de funcionamento, das " + print::time(obj["horario_abertura"].c_str()) +
+      "\nEncontra-se no '" + obj["m_nome"].c_str() +
+      "'\nHorário de funcionamento, das " + print::time(obj["horario_abertura"].c_str()) +
       " às " + print::time(obj["horario_fechamento"].c_str());
       if (culinarias.size() > 0) {
         res += "\nCulinárias: " + culinarias[0];

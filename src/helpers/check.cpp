@@ -2,6 +2,7 @@
 #define CHECK
 
 #include <string>
+#include <pqxx/pqxx>
 
 namespace check {
   bool is_number (char c) {
@@ -23,6 +24,15 @@ namespace check {
       }
     return true;
   }
+
+  bool check_resul(pqxx::result &r) {
+    return r.size() > 0;
+  }
+
+  bool multi_result(pqxx::result &r) {
+    return r.size() > 1;
+  }
+
 }
 
 #endif // CHECK
