@@ -12,7 +12,7 @@
 #include "includes.h"
 
 namespace reservas {
-  void add_reserva () {
+  void add_reserva () {/*{{{*/
     if (!login()){
       perror("Email ou senha incorretos\n");
       return;
@@ -103,6 +103,41 @@ namespace reservas {
       }
       interact::wait();
     }
+  }/*}}}*/
+
+  void add_viagem () {
+    if (!login()){
+      perror("Email ou senha incorretos\n");
+      return;
+    }
+    std::string query = interact::prompt("Para que cidade vai viajar: ");
+    pqxx::result destinos = destino::search(query);
+    if (!check::check_resul(destinos)) {
+      perror("Nenhum resultado encontrado para a busca");
+      interact::wait();
+      return;
+    }
+    pqxx::row d = interact::select_one(destinos);
+    std::vector<std::string> options {
+      "aviao",
+      "trem",
+      "barco",
+      "carro",
+      "onibus"
+    };
+    std::string transporte = interact::opt_one_string("Qual meio de transporte utilizará?", options);
+    std::string data = interact::prompt(
+        "Quando será sua viagem? Utilize o formato (AAAA-MM-DD): ");
+    std::string horario = interact::prompt(
+        "Que horas você sai? Utilize o formato (hh:mm): ");
+    if (!(check::is_date(data) || check::is_time(horario))) {
+      perror("Data/horário em formato inválido...");
+      interact::wait();
+      return;
+    }
+    destino::add_viagem(visitante, data, horario, transporte, d);
+    std::cout << "Viagem programada com sucesso!\n";
+    interact::wait();
   }
 }
 

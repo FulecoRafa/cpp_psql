@@ -25,7 +25,7 @@ int main (void) {
         reservas::add_reserva();
         break;
       case 3:
-        todo()
+        reservas::add_viagem();
         break;
       case 4:
         conn::work.commit();

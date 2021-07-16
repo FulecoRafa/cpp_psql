@@ -17,6 +17,19 @@ namespace destino {
     );
   }
 
+  pqxx::result add_viagem(std::string visitante, std::string data,
+                          std::string horario, std::string transporte,
+                          pqxx::row &destino) {
+    return conn::work.exec(
+        "insert into viagem values ("
+        "'" + visitante + "', "
+        "'" + data + "T" + horario + ":00', "
+        "'" + destino["cidade"].as<std::string>() + "', "
+        "'" + destino["pais"].as<std::string>() + "', "
+        "'" + transporte + "')"
+      );
+  }
+
   std::string print(pqxx::row &obj) {
     return std::string() + obj["cidade"].c_str() + "[" + obj["pais"].c_str() + "]";
   }
