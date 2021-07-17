@@ -7,6 +7,8 @@
 #include "connection.cpp"
 #include "../helpers/print.cpp"
 
+
+// busca por exposicoes e fornecimento de informacoes relevantes sobre estas
 namespace exposicao {
   pqxx::result search(std::string& field, std::string& query) {
     return conn::work.exec(std::string() +

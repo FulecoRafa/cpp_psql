@@ -66,7 +66,7 @@ namespace reservas {
         case 2: { // viagem
           pqxx::result viagens = destino::get_viagens(visitante);
           if (!check::check_resul(viagens)) {
-            perror("Você não possui nenhuma reserva em restaurante.");
+            perror("Você não possui nenhuma reserva de viagem.");
             break;
           }
           pqxx::row rr = interact::select_one(viagens);

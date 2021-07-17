@@ -38,7 +38,7 @@ namespace restaurante {
         );
   }
 
-  // mostra em qua restaurante é possivel encontrar qual estilo de culinaria e seus horarios de funcionamento
+  // mostra em qual restaurante é possivel encontrar qual estilo de culinaria e seus horarios de funcionamento
   pqxx::result add_reserva(std::string visitante, std::string date,
                            std::string time, pqxx::row restaurante) {
     return conn::work.exec("insert into reserva_restaurante values("

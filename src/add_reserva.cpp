@@ -11,8 +11,10 @@
 #include "reservas.cpp"
 #include "includes.h"
 
+
+// cria reservas nos locais possiveis
 namespace reservas {
-  void add_reserva () {/*{{{*/
+  void add_reserva () {
     if (!login()){
       perror("Email ou senha incorretos\n");
       return;
@@ -26,7 +28,7 @@ namespace reservas {
       int tipo = interact::opt_one("Você quer ver que tipo de reserva?", options);
       switch (tipo) {
 
-        case 0: { // hotel
+        case 0: { // quarto em um hotel
           std::vector<std::string> fields {
             "cadastro_nacional",
             "nome",
@@ -48,7 +50,7 @@ namespace reservas {
           }
           pqxx::row q = interact::select_one(quartos);
           std::cout << "\n" << hotel::print_quarto(q) << '\n';
-          if (interact::confirm("É este quarto que gostaria de reservar?")) {
+          if (interact::confirm("É este quarto que gostaria de reservar?")) {   
               std::string start = interact::prompt("Quando gostaria de entrar? Utilize o formato (AAAA-MM-DD): ");
               std::string finish = interact::prompt("Qual a data de saída? Utilize o formato (AAAA-MM-DD): ");
               if (!(check::is_date(start) || check::is_date(finish))) {
@@ -103,8 +105,10 @@ namespace reservas {
       }
       interact::wait();
     }
-  }/*}}}*/
+  }
 
+
+  // criacao de um roteiro de viagem, selecionando data, destino e meio de transporte
   void add_viagem () {
     if (!login()){
       perror("Email ou senha incorretos\n");

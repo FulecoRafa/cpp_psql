@@ -7,6 +7,7 @@
 
 #include "../helpers/print.cpp"
 
+// busca por hoteis
 namespace hotel {
   pqxx::result search(std::string& field, std::string& query) {
     return conn::work.exec("select * from hotel where lower(" + field + ") like lower('" + query + "%')");
@@ -24,7 +25,6 @@ namespace hotel {
     return conn::work.exec("select *, (q.preco_por_cama * q.camas) as total"
         " from reserva_quarto rq"
         " join quarto q on q.numero = rq.quarto and q.hotel = rq.hotel"
->>>>>>> master
         " join hotel h on q.hotel = h.cadastro_nacional"
         " where visitante = '" + visitante + "'"
         );
@@ -49,7 +49,6 @@ namespace hotel {
     return res;
   }
 
->>>>>>> master
   std::string print(pqxx::row& obj) {
     return std::string() + "# " + obj["nome"].c_str() +
       "\nCadastro Nacional: " + obj["cadastro_nacional"].c_str() +
