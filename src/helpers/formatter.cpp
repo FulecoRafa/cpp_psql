@@ -5,8 +5,11 @@
 #include <pqxx/pqxx>
 #include <sstream>
 
+
+// normaliza o tamanho das strings recebidas para 60 caracteres introduzindo "..." ate este limite e truncando o excesso
+
 namespace format {    
-  std::string row_to_string(pqxx::row row) {    // normaliza o tamanho das strings recebidas para 60 caracteres introduzindo "..." ate este limite e truncando o excesso
+  std::string row_to_string(pqxx::row row) {    
     std::stringstream ss;
     ss << row[0].c_str();
     for (int i = 1; i < row.size(); i++) {

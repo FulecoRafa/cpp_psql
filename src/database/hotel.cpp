@@ -21,10 +21,6 @@ namespace hotel {
   }
 
   pqxx::result get_reservas(std::string &visitante) {
-<<<<<<< HEAD
-    return conn::work.exec("select * from reserva_quarto rq"
-        " join quarto q on q.numero = rq.quarto and q.hotel = rq.hotel"   // retorna as reservas feitas em determinado hotel
-=======
     return conn::work.exec("select *, (q.preco_por_cama * q.camas) as total"
         " from reserva_quarto rq"
         " join quarto q on q.numero = rq.quarto and q.hotel = rq.hotel"
@@ -34,9 +30,8 @@ namespace hotel {
         );
   }
 
-<<<<<<< HEAD
+
   // retorna as informacoes a respeito do hotel, quarto, e reserva feita
-=======
   pqxx::result add_reserva(
       std::string visitante,
       std::string start,

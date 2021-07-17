@@ -11,7 +11,7 @@
 #include "formatter.cpp"
 
 namespace interact {
-  std::string prompt(std::string msg) {     // solicita o login e senha do usuario
+  std::string prompt(std::string msg) {     // recebe entrada do usuario
     std::string answer;
     std::cout << msg;
     std::getline(std::cin, answer, '\n');
@@ -36,7 +36,8 @@ namespace interact {
     return answer;
   }
 
-  int opt_one(std::string prompt, const std::vector<std::string>& list) {   // cria um menu interativo com opcoes para o usuario selecionar 
+  // cria um menu interativo com opcoes para o usuario selecionar 
+  int opt_one(std::string prompt, const std::vector<std::string>& list) {   
     int index = 0;
     system("/bin/stty raw");
     while (true) {

@@ -48,7 +48,8 @@ namespace restaurante {
         "')");
   }
 
->>>>>>> master
+
+  // 
   std::string print(pqxx::row& obj) {
     std::vector<std::string> culinarias;
       if (!obj["culinaria1"].is_null())culinarias.push_back(obj["culinaria1"].c_str());
